@@ -1,6 +1,6 @@
 declare interface ImportMeta{
-    GlobNext<T>(pattern:string):Record<string,(() => Promise<T>)>
+    GlobNext<T,Eager extends boolean>(pattern:string|string[],options?:GlobOptions<Eager>):Eager extends true?Record<string,T>:Record<string,(() => Promise<T>)>
 }
-declare interface GlobOptions{
-    eager:boolean
+declare interface GlobOptions<Eager extends boolean>{
+    eager:Eager
 }
